@@ -7,7 +7,7 @@ xsetroot -cursor_name left_ptr
 sxhkd &
 
 # panel
-tint2 &
+comton &
 
 # Set some bsp specific stuff
 bspc monitor -d I II III IV V VI VII VIII IX X
