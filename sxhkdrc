@@ -1,25 +1,19 @@
 # web browser
 super + w
-    exo-open --launch WebBrowser
+        firefox
 
 # terminal emulator
-super + t
-    exo-open --launch TerminalEmulator
 
 super + Return
-    exo-open --launch TerminalEmulator
+        tilix
 
 # file manager
 super + f
-    exo-open --launch FileManager
+        pcmanfm
 
 # program launcher
 super + @space
-    rofi_run -r
-
-# program launcher
-alt + F1
-    rofi_run -r
+    rofi -show run	    
 
 # make sxhkd reload its configuration files:
 super + shift + r
@@ -27,7 +21,7 @@ super + shift + r
 
 # quit bspwm normally
 super + x
-    rofi_run -l
+    rofi run -l
 
 # close and kill
 super + {_,shift + }q
@@ -104,7 +98,7 @@ super + ctrl + {1-9}
     bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-super + ctrl + space
+super + ctrl + space 
     bspc node -p cancel
 
 # cancel the preselection for the focused desktop
