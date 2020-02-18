@@ -4,7 +4,7 @@ sxhkd &
 compton &
 #xrandr -s 1360x768 &
 
-feh --bg-fill /home/paola/Imágenes/Anonimity.png 
+#feh --bg-fill /home/paola/Imágenes/Anonimity.png 
 bspc config pointer_modifier mod1
 
 bspc monitor -d I II III IV V VI VII VIII IX X
