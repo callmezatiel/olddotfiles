@@ -1,0 +1,321 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+[colors]
+# background = ${xrdb:background}
+background = #16191f
+foreground = #9baec8
+
+primary = #81A1C1
+accent = #5E81AC
+red = #BF616A
+green = #A3BE8C
+yellow = #EBCB8B
+blue = #88C0D0
+magenta = #B48EAD
+cyan = #D08770
+white = #ECEFF4
+dark = #2E3440
+
+[bar/example]
+
+width = 100%
+height = 20
+offset-x = 0
+offset-y = 0
+fixed-center = true
+bottom = false
+locale = ru_RU.UTF-8
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 3
+padding-right = 3
+
+module-margin-left = 5
+module-margin-right = 0
+
+font-0 = ClearSansMedium:size=9:antialias=false;1
+# Cat unicode: echo -e "\uF31A"
+font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
+font-3 = "Font Awesome 5 Brands:pixelsize=8;1"
+font-4 = "unifont:fontformat=truetype:size=8:antialias=false;1"
+
+
+modules-left = app web term rss cpu memory uparch mpd
+modules-center = title
+modules-right = fs tor alsa xkeyboard off
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+# wm-restack = i3
+override-redirect = false
+enable-ipc = true
+# "polybar-msg cmd toggle" hide/show bar
+
+
+# ##########################################
+[module/fs]
+type = internal/fs
+mount-0 = /
+mount-1 = /home
+# mount-2 = /media/files
+interval = 100
+fixed-values = true
+spacing = 2
+format-mounted = <label-mounted>
+format-unmounted = <label-unmounted>
+label-mounted =  %used%
+label-mounted-foreground = ${colors.accent}
+label-unmounted = no mount
+label-unmounted-foreground = ${colors.red}
+
+
+
+
+[module/wtr]
+type = custom/script
+exec = ~/.config/polybar/wtr.sh
+format-foreground = ${colors.magenta}
+# format-padding = 1
+interval = 600
+label-font = 0
+
+
+[module/title]
+type = internal/xwindow
+format-padding = 1
+label = "%title:0:20:...%"
+label-maxlen = 20
+
+
+
+[module/term]
+type = custom/text
+content = 
+content-foreground = ${colors.primary}
+click-left = tilix &
+click-right = tilix -e htop &
+
+
+
+[module/app]
+type = custom/text
+content =  Zatiel
+content-foreground = ${colors.primary}
+#click-left = ulauncher
+#click-left = "jgmenu_run >/dev/null 2>&1 &"
+click-left = rofi -show run
+click-right = rofi -show run
+
+
+[module/web]
+type = custom/text
+content = 
+content-foreground = ${colors.primary}
+click-left = firefox &
+click-right = 
+
+
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %percentage%%
+
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %percentage_used%%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${colors.color0B}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.color0A}
+
+format-full =  full
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/nvidia]
+type = custom/script
+exec = optimus-manager --print-mode | grep 'Current' | awk '{print $5}'
+click-left = optimus.sh
+interval = 1000
+format-prefix = " "
+
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.primary}
+
+
+
+[module/alsa]
+type = internal/alsa
+format-volume = <ramp-volume> <label-volume>
+format-muted =  0%
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.primary}
+
+
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %layout%
+
+
+
+[module/off]
+type = custom/text
+content = 
+content-foreground = ${colors.primary}
+click-left = oblogout
+content-margin-right = 0
+
+
+
+[module/network]
+type = internal/network
+interface = enp2s5
+interval = 1.0
+
+# format-connected = "<ramp-signal> <label-connected>"
+format-connected = "  <label-connected> "
+format-packetloss = <animation-packetloss>
+label-connected =  %upspeed:2% %downspeed:2%
+# label-connected = %signal%%
+
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = #000000
+
+
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+# password = mysecretpassword
+interval = 2
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next>
+label-offline =  mpd off
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-play-foreground = ${colors.primary}
+icon-pause-foreground = ${colors.primary}
+icon-stop-foreground = ${colors.primary}
+icon-prev-foreground = ${colors.primary}
+icon-next-foreground = ${colors.primary}
+
+
+
+[module/ewmh]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+# icon-default = ♟
+format = <label-state>
+# format-padding = 5
+label-monitor = %name%
+# tokens: %index% %icon% %name%
+label-active = %name%
+label-active-padding = 4
+label-active-foreground = ${colors.dark}
+label-active-background = ${colors.accent}
+
+label-occupied = %name%
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.magenta}
+label-occupied-padding = 4
+
+label-urgent = %name%
+label-urgent-padding = 4
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+
+label-empty = %name%
+label-empty-padding = 4
+label-empty-foreground = ${colors.foreground}
+label-empty-background = ${colors.background}

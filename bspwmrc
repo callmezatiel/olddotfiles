@@ -2,9 +2,10 @@
 
 sxhkd &
 compton &
-#xrandr -s 1360x768 &
+#xrandr -s 2560x1600 &
+polybar example &
 
-#feh --bg-fill /home/paola/Imágenes/Anonimity.png 
+#feh --bg-fill /home/paola/Imágenes/taylor.jpg 
 bspc config pointer_modifier mod1
 
 bspc monitor -d I II III IV V VI VII VIII IX X
