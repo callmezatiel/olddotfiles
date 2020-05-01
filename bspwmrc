@@ -2,7 +2,7 @@
 
 sxhkd &
 compton &
-#xrandr -s 2560x1600 &
+#xrandr -s 1920x1440 &
 polybar example &
 
 #feh --bg-fill /home/paola/Imágenes/taylor.jpg 
@@ -42,8 +42,8 @@ bspc desktop ^9 -l monocle
 bspc desktop ^10 -l monocle
 
 # Rules
-bspc rule -a URxvt:Tiled desktop='^1' follow=on
-bspc rule -a URxvt:Tmux desktop='^1' follow=on
+bspc rule -a tilix:Tiled desktop='^1' follow=on
+bspc rule -a tilix:Tmux desktop='^1' follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a Subl3 desktop='^3'
 # bspc rule -a Thunar desktop='^4' state=pseudo_tiled
@@ -63,10 +63,10 @@ bspc rule -a teeworlds desktop='^9'
 bspc rule -a Steam desktop='^9' state=floating
 bspc rule -a "VirtualBox Manager" desktop='^10'
 
-bspc rule -a URxvt:Newsboat state=floating center=on
-bspc rule -a URxvt:Ranger state=floating center=on
-bspc rule -a URxvt:Pacui state=floating center=on
-bspc rule -a URxvt:Float state=floating
+bspc rule -a tilix:Newsboat state=floating center=on
+bspc rule -a tilix:Ranger state=floating center=on
+bspc rule -a tilix:Pacui state=floating center=on
+bspc rule -a tilix:Float state=floating
 bspc rule -a Gnome-calculator state=floating
 bspc rule -a Gpick state=floating
 bspc rule -a GParted state=floating

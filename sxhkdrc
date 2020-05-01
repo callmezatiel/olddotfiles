@@ -10,7 +10,7 @@ super + Return
 	 tilix
 
 alt + t
-	$HOME/.config/bspwm/bspwmfloat urxvt -name Float
+	$HOME/.config/bspwm/bspwmfloat tilix -name Float
 
 # program launcher
 alt + d
@@ -23,13 +23,13 @@ alt + s
 	subl3
 
 alt + f
-	thunar
+	pcmanfm
 
 alt + m
 	telegram-desktop
 
 alt + r
-	urxvt -name Ranger -e ranger
+	tilix -name Ranger -e ranger
 
 # alt + c
 # 	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
