@@ -1,7 +1,6 @@
 #! /bin/sh
 
 sxhkd &
-compton &
 #xrandr -s 1920x1440 &
 polybar example &
 
